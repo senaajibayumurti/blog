@@ -1,28 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MencobaController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/about', function () {
-    return view('about', [
-        "name" => "johnthor",
-        "email" => "jontor@mail.com"
-    ]);
-});
+Route::get('/', [MencobaController::class,'welcome']);
 
-Route::get('/home', function () {
-    return view('home');
-});
+Route::get('/home', [MencobaController::class,'home']);
+
+Route::get('/boom', [MencobaController::class,'boom']);
+
+Route::get('/cloud9', [MencobaController::class,'cloud9']);
+
+Route::get('/fnatic', [MencobaController::class,'fnatic']);
+
+Route::get('/prx', [MencobaController::class,'prx']);
+
+Route::get('/sentinel', [MencobaController::class,'sentinel']);

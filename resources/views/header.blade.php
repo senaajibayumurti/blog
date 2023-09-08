@@ -1,8 +1,13 @@
-<header>
-    <header>
-		<h2>Praktikum Pemrograman Web 2 - Tugas Laprak 2</h2>
-		<a href="/home">Home</a> |
-		<a href="/about">About</a>
-        <hr>
+<body>
+	<header>
+		<header>
+			<h1>INI CERITANYA HEADER</h1>
+			<a href="/">Welcome</a> |
+			<a href="/home">Home</a> |
+			<a href="/boom">Boom  E-Sport</a> |
+			<a href="/cloud9">Cloud9</a> |
+			<a href="/prx">Paper Rex</a>
+			<hr>
+		</header>
 	</header>
-</header>
+</body>

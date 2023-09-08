@@ -5,6 +5,6 @@
 @section('content')
     @include('header') 
 
-    <h1>Selamat datang di halaman utama!</h1>
-    <p>Ini adalah konten utama halaman.</p>
+    <h2>Cloud9</h2>
+    <p>Halaman Cloud9</p>
 @endsection

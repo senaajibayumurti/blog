@@ -5,6 +5,6 @@
 @section('content')
     @include('header') 
 
-    <h1>Selamat datang di halaman utama!</h1>
-    <p>Ini adalah konten utama halaman.</p>
+    <h2>Boom E-Sport</h2>
+    <p>Halaman Boom E-Sport</p>
 @endsection

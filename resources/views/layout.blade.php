@@ -5,5 +5,6 @@
 </head>
 <body>
     @yield('content')
+    <hr>
 </body>
 </html>
