@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MencobaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/about', function () {
     return view('about', [
@@ -26,3 +27,13 @@ Route::get('/about', function () {
 Route::get('/home', function () {
     return view('home');
 });
+
+Route::get('/boom', [MencobaController::class,'boomesport']);
+
+Route::get('/prx', [MencobaController::class,'prxesport']);
+
+Route::get('/fnatic', [MencobaController::class,'fnaticesport']);
+
+Route::get('/fpx', [MencobaController::class,'fpxesport']);
+
+Route::get('/', [MencobaController::class,'beranda']);
