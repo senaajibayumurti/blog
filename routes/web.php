@@ -12,8 +12,4 @@ Route::get('/boom', [MencobaController::class,'boom']);
 
 Route::get('/cloud9', [MencobaController::class,'cloud9']);
 
-Route::get('/fnatic', [MencobaController::class,'fnatic']);
-
 Route::get('/prx', [MencobaController::class,'prx']);
-
-Route::get('/sentinel', [MencobaController::class,'sentinel']);
