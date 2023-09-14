@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\EsportModel;
 
 class MencobaController extends Controller
 {
@@ -25,6 +26,14 @@ class MencobaController extends Controller
     
     public function prx(){
         return view('prx');
+    }
+
+    //Seeder
+    public function index(){
+        //$data_teamSeeder = EsportModel::all();
+        $data_teamSeeder = EsportModel::all() -> sortByDesc('id_team');
+
+        return view('teamSeeder.indexEsport', compact('data_teamSeeder'));
     }
     
 }
