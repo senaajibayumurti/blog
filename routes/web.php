@@ -26,3 +26,5 @@ Route::get('/about', function () {
 Route::get('/home', function () {
     return view('home');
 });
+
+Route::get('/buku', BukuController::class,'index');
