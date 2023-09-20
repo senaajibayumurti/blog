@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($data_teamSeeder as $team)
+        @foreach ($data_buku as $buku)
             <tr>
                 <td>{{ $buku -> id}}</td>
                 <td>{{ $buku -> judul}}</td>
