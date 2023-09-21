@@ -29,3 +29,10 @@ Route::get('/home', function () {
 });
 
 Route::get('/buku', [BukuController::class,'index']);
+
+//Tambahan untuk laprak5pertemuan5
+Route::get('/buku/create', [BukuController::class,'create']) -> name('buku.create');
+
+Route::post('/buku/store', [BukuController::class,'store']) -> name('buku.store');
+
+Route::post('/buku/delete/{id}', [BukuController::class,'destroy']) -> name('buku.destroy');

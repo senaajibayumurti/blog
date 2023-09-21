@@ -28,11 +28,21 @@
                     <td>{{ $buku -> penulis}}</td>
                     <td>{{ "Rp ".number_format($buku->harga, 2, ',', '.') }}</td>
                     <td>{{ \Carbon\Carbon::parse($buku->tgl_terbit)->format('d/m/y') }}</td>
+                    <td>
+                        <form action="{{ route('buku.destroy', $buku->id) }}" method="POST">
+                            @csrf
+                            <button onclick="return confirm('Yakin banh?')" class="btn btn-primary" role="button">Hapus</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
     <h3>Banyak Data: {{ $jumlah_data }}</h3>
     <h3>Jumlah Total Harga: Rp {{ number_format($total_harga, 2, ',', '.') }}</h3>
+
+    <!-- Tambahan untuk laprak5pertemuan5 -->
+    <br>
+    <p><a name="tambah_buku" id="btn_tambah_buku" class="btn btn-primary" href="{{ route('buku.create') }}" role="button">Tambah Buku</a></p>
 </body>
 </html>
