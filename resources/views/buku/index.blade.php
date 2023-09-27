@@ -31,8 +31,9 @@
                     <td>
                         <form action="{{ route('buku.destroy', $buku->id) }}" method="POST">
                             @csrf
-                            <button onclick="return confirm('Yakin banh?')" class="btn btn-primary" role="button">Hapus</button>
+                            <button onclick="return confirm('Yakin mo dihapus, banh?')" class="btn btn-primary" role="button">Hapus</button>
                         </form>
+                            <a href="{{ route('buku.edit', $buku->id) }}" class="btn btn-primary" role="button">Edit</a>
                     </td>
                 </tr>
             @endforeach
