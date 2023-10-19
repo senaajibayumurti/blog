@@ -11,4 +11,5 @@ class Buku extends Model
     protected $table = 'buku';
     protected $primaryKey = 'id';
     protected $fillable = ['judul', 'penulis', 'harga','tgl_terbit', 'created_at','updated_at'];
+    protected $dates = ['tgl_terbit'];
 }

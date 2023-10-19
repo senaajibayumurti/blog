@@ -26,19 +26,25 @@ class BukuController extends Controller
     }
 
     public function store(Request $request){
-        Buku::create([
-            'judul' => $request -> judul,
-            'penulis' => $request -> penulis,
-            'harga' => $request -> harga,
-            'tgl_terbit' => $request -> tgl_terbit
+        $this -> validate($request, [
+            'judul'         => 'required|string',
+            'penulis'       => 'required|string|max:30',
+            'harga'         => 'required|numeric',
+            'tgl_terbit'    => 'required|date'
         ]);
-        return redirect('/buku');
+        Buku::create([
+            'judul'         => $request -> judul,
+            'penulis'       => $request -> penulis,
+            'harga'         => $request -> harga,
+            'tgl_terbit'    => $request -> tgl_terbit
+        ]);
+        return redirect('/buku') -> with('pesan', 'Data Buku (store) Berhasil di Simpan');
     }
 
     public function destroy($id){
         $buku = Buku::find($id);
         $buku -> delete();
-        return redirect('/buku');
+        return redirect('/buku') -> with('pesan', 'Data Buku (destroy) Berhasil di Simpan');
     }
 
     //Tugas Praktikum laprak5pertemuan5
@@ -54,6 +60,6 @@ class BukuController extends Controller
             'harga' => $request -> harga,
             'tgl_terbit' => $request -> tgl_terbit
         ]);
-        return redirect('/buku');
+        return redirect('/buku') -> with('pesan', 'Data Buku (update) Berhasil di Simpan');
     }
 }

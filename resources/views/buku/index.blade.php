@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>tugas4pertemuan4</title>
+    <title>Pertemuan 8</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
+    @if (Session::has('pesan'))
+        <div class="alert alert-success">{{Session::get('pesan')}}</div>
+    @endif
+    <h1>DATA BUKU</h1>
     <table class="table table-striped">
         <thead>
             <tr>
