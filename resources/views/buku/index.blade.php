@@ -44,6 +44,8 @@
 
     <!-- Tambahan untuk laprak5pertemuan5 -->
     <br>
-    <p><a name="tambah_buku" id="btn_tambah_buku" class="btn btn-primary" href="{{ route('buku.create') }}" role="button">Tambah Buku</a></p>
+    <p><a name="tambah_buku" id="btn_tambah_buku" class="btn btn-primary" 
+        href="{{ route('buku.create') }}" role="button">Tambah Buku</a>
+    </p>
 </body>
 </html>

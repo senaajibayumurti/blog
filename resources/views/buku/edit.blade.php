@@ -17,4 +17,4 @@
         <div><button type="submit">Simpan</button></div>
         <a href="/buku"> Batal</a>
     </form>
-    </div>
+</div>
