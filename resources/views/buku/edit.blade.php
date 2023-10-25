@@ -1,38 +1,48 @@
-<!DOCTYPE html>
+@extends('master')
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pertemuan 8</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.min.js"></script>
-</head>
 <body>
-    <h1>EDIT BUKU</h1>
-    <div class="container">
-        <h4>Edit Buku</h4>
+    @section('content')
+    <h1 class="text-center">EDIT BUKU</h1>
+    @if (count($errors) > 0)
+        <div class="container w-50">
+            <ul class="alert alert-danger px-5">
+                @foreach ($errors -> all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <div class="container w-50">
         <form action="{{route('buku.update',$buku->id)}}" method="POST">
             @csrf
-            <div>Judul
-                <input type="text" name="judul" id="judul"
-                value="{{$buku->judul}}">
+            <div class="d-flex flex-column justify-content-between">
+                <div class="d-flex flex-row justify-content-between align-content-start mb-2">
+                    <p>Judul</p>
+                    <input type="text" name="judul" id="judul" class="form-control w-75"
+                    value="{{$buku->judul}}">
+                </div>
+                <div class="d-flex flex-row justify-content-between mb-2">
+                    <p>Penulis</p>
+                    <input type="text" name="penulis" id="penulis" class="form-control w-75"
+                    value="{{$buku->penulis}}">    
+                </div>
+                <div class="d-flex flex-row justify-content-between mb-2">
+                    <p>Harga</p>
+                    <input type="number" name="harga" id="harga" class="form-control w-75"
+                    value="{{$buku->harga}}">    
+                </div>
+                <div class="d-flex flex-row justify-content-between mb-2">
+                    <p>Tgl. Terbit</p>
+                    <input type="date" name="tgl_terbit" id="tgl_terbit" class="date form-control w-75" placeholder="yyyy/mm/dd"
+                    value="{{$buku->tgl_terbit}}">    
+                </div>
+                <div class="d-flex flex-row justify-content-end mt-2">
+                    <button type="submit" class="btn btn-success mr-2">Simpan</button>
+                    <a class="btn btn-danger" href="/buku"> Batal</a>
+                </div>
             </div>
-            <div>Penulis
-                <input type="text" name="penulis" id="penulis"
-                value="{{$buku->penulis}}">    
-            </div>
-            <div>Harga
-                <input type="text" name="harga" id="harga"
-                value="{{$buku->harga}}">    
-            </div>
-            <div>Tanggal Terbit
-                <input type="text" name="tgl_terbit" id="tgl_terbit" class="date form-control" placeholder="yyyy/mm/dd"
-                value="{{$buku->tgl_terbit}}">    
-            </div>
-            <div><button type="submit">Simpan</button></div>
-            <a href="/buku"> Batal</a>
         </form>
     </div>
+    @endsection
 </body>
 </html>

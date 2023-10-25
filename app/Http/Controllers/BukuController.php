@@ -54,6 +54,12 @@ class BukuController extends Controller
     }
     public function update(Request $request, $id){
         $buku = Buku::find($id);
+        $this -> validate($request, [
+            'judul'         => 'required|string',
+            'penulis'       => 'required|string|max:30',
+            'harga'         => 'required|numeric',
+            'tgl_terbit'    => 'required|date'
+        ]);
         $buku -> update([
             'judul' => $request -> judul,
             'penulis' => $request -> penulis,
