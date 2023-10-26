@@ -9,6 +9,9 @@ use App\Models\Buku;
 class BukuController extends Controller
 {
     public function index(){
+        $batas = 5;
+        $jumlah_buku = Buku::orderBy('id', 'desc')->paginate($batas);
+        $no = $batas * ($jumlah_buku -> currentPage()-1);
         $data_buku = Buku::all();
 
         //Var banyak data
@@ -17,7 +20,7 @@ class BukuController extends Controller
         //Var jumlah harga
         $total_harga = Buku::sum('harga');
 
-        return view('buku.index', compact('data_buku','jumlah_data','total_harga'));
+        return view('buku.index', compact('data_buku','jumlah_data', 'jumlah_buku','no', 'total_harga'));
     }
 
     //Tambahan untuk laprak5pertemuan5

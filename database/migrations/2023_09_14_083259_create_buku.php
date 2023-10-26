@@ -16,6 +16,13 @@ return new class extends Migration
             $table->date('tgl_terbit');
             $table->timestamps();
         });
+
+        Schema::create('book', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('author');
+            $table->timestamps();
+        });
     }
 
     public function down(): void

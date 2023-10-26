@@ -45,6 +45,7 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="float-end">{{ $jumlah_buku ->links() }}</div>
     </div>
     <div class="d-flex flex-row justify-content-between">
         <h3>Banyak Buku: {{ $jumlah_data }}</h3>
