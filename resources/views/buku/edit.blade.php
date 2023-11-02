@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.app')
 <html lang="en">
 <body>
     @section('content')
@@ -36,9 +36,9 @@
                     <input type="date" name="tgl_terbit" id="tgl_terbit" class="date form-control w-75" placeholder="yyyy/mm/dd"
                     value="{{$buku->tgl_terbit}}">    
                 </div>
-                <div class="d-flex flex-row justify-content-end mt-2">
-                    <button type="submit" class="btn btn-success mr-2">Simpan</button>
-                    <a class="btn btn-danger" href="/buku"> Batal</a>
+                <div class="d-flex flex-row justify-content-around mt-2 w-25 align-self-end">
+                    <button type="submit" class="btn btn-success">Simpan</button>
+                    <a class="btn btn-danger" href="/home">Batal</a>
                 </div>
             </div>
         </form>

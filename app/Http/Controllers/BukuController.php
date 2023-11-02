@@ -10,17 +10,14 @@ class BukuController extends Controller
 {
     public function index(){
         $batas = 5;
-        $jumlah_buku = Buku::orderBy('id', 'desc')->paginate($batas);
-        $no = $batas * ($jumlah_buku -> currentPage()-1);
-        $data_buku = Buku::all();
-
-        //Var banyak data
-        $jumlah_data = count($data_buku);
+        $jumlah_data = Buku::count();
+        $data_buku = Buku::orderBy('id', 'desc')->paginate($batas);
+        $no = $batas * ($data_buku -> currentPage()-1);
 
         //Var jumlah harga
         $total_harga = Buku::sum('harga');
 
-        return view('buku.index', compact('data_buku','jumlah_data', 'jumlah_buku','no', 'total_harga'));
+        return view('buku.index', compact('data_buku','jumlah_data','no', 'total_harga'));
     }
 
     //Tambahan untuk laprak5pertemuan5
@@ -41,13 +38,13 @@ class BukuController extends Controller
             'harga'         => $request -> harga,
             'tgl_terbit'    => $request -> tgl_terbit
         ]);
-        return redirect('/buku') -> with('pesan', 'Data Buku (store) Berhasil di Simpan');
+        return redirect('/home') -> with('pesan', 'Data Buku (store) Berhasil di Simpan');
     }
 
     public function destroy($id){
         $buku = Buku::find($id);
         $buku -> delete();
-        return redirect('/buku') -> with('pesan', 'Data Buku (destroy) Berhasil di Simpan');
+        return redirect('/home') -> with('pesan', 'Data Buku (destroy) Berhasil di Simpan');
     }
 
     //Tugas Praktikum laprak5pertemuan5
@@ -69,6 +66,29 @@ class BukuController extends Controller
             'harga' => $request -> harga,
             'tgl_terbit' => $request -> tgl_terbit
         ]);
-        return redirect('/buku') -> with('pesan', 'Data Buku (update) Berhasil di Simpan');
+        return redirect('/home') -> with('pesan', 'Data Buku (update) Berhasil di Simpan');
+    }
+
+    // SEARCH
+    // public function search(Request $request){
+    //     $batas = 5;
+    //     $cari = $request -> kata;
+    //     $jumlah_data = Buku::count();
+    //     $data_buku = Buku::orderBy('id', 'desc')->paginate($batas);
+    //     $no = $batas * ($data_buku -> currentPage()-1);
+
+    //     //Var jumlah harga
+    //     $total_harga = Buku::sum('harga');
+    public function search(Request $request) {
+        $batas = 5;
+        $cari = $request -> kata;
+        $jumlah_data = Buku::count();
+        $data_buku = Buku::where('judul', 'like', "%".$cari."%")->orwhere('penulis', 'like', "%".$cari."%")->paginate($batas);
+        $no = $batas * ($data_buku->currentPage() - 1);
+
+        //Var jumlah harga
+        $total_harga = $data_buku->sum('harga');
+
+        return view('buku.index', compact('data_buku','jumlah_data','no', 'total_harga'));
     }
 }
