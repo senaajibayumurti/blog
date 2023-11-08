@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Admin
 {
-    public function handle(Request $request, Closure $next){
+    public function handle(Request $request, Closure $next): Response{
         if(Auth::user() -> level != 'admin'){
             return redirect() -> back();
         }

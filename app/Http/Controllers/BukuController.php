@@ -84,6 +84,6 @@ class BukuController extends Controller
     }
 
     public function _construct(){
-        $this -> middleware('admin');
+        $this -> middleware('auth');
     }
 }

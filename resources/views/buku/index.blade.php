@@ -7,7 +7,7 @@
     @endif
     <div class="container">
         <h1>DATA BUKU</h1>
-        <div class="d-flex flex-row justify-content-end align-items-center">
+        <div class="d-flex flex-row justify-content-between align-items-center">
             @if (Auth::check() && Auth::user() -> level == 'admin')
             <p><a name="tambah_buku" id="btn_tambah_buku" class="btn btn-primary" 
                 href="{{ route('buku.create') }}" role="button">Tambah Buku</a>
@@ -33,7 +33,9 @@
                         <th>Penulis</th>
                         <th>Harga</th>
                         <th>Tgl. Terbit</th>
+                        @if (Auth::check() && Auth::user() -> level == 'admin')
                         <th>Aksi</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -45,15 +47,19 @@
                             <td>{{ "Rp ".number_format($buku->harga, 2, ',', '.') }}</td>
                             {{-- <td>{{ \Carbon\Carbon::parse($buku->tgl_terbit)->format('d/m/y') }}</td> --}}
                             <td>{{ \Carbon\Carbon::parse($buku->tgl_terbit)->format('d-m-y') }}</td>
+                            @if (Auth::check() && Auth::user() -> level == 'admin')
                             <td>
                                 <div class="d-flex flex-row justify-content-around align-items-start">
                                     <form action="{{ route('buku.destroy', $buku->id) }}" method="POST">
                                         @csrf
-                                        <button onclick="return confirm('Yakin mo dihapus, banh?')" class="btn btn-danger mr-2" role="button">Hapus</button>
+                                        <button onclick="return confirm('Yakin mo dihapus, banh?')"
+                                        class="btn btn-danger mr-2" role="button">Hapus</button>
                                     </form>
-                                        <a href="{{ route('buku.edit', $buku->id) }}" class="btn btn-warning" role="button">Edit</a>
+                                        <a href="{{ route('buku.edit', $buku->id) }}"
+                                        class="btn btn-warning" role="button">Edit</a>
                                 </div>
                             </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
