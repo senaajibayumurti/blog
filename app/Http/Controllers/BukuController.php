@@ -70,15 +70,6 @@ class BukuController extends Controller
     }
 
     // SEARCH
-    // public function search(Request $request){
-    //     $batas = 5;
-    //     $cari = $request -> kata;
-    //     $jumlah_data = Buku::count();
-    //     $data_buku = Buku::orderBy('id', 'desc')->paginate($batas);
-    //     $no = $batas * ($data_buku -> currentPage()-1);
-
-    //     //Var jumlah harga
-    //     $total_harga = Buku::sum('harga');
     public function search(Request $request) {
         $batas = 5;
         $cari = $request -> kata;
@@ -90,5 +81,9 @@ class BukuController extends Controller
         $total_harga = $data_buku->sum('harga');
 
         return view('buku.index', compact('data_buku','jumlah_data','no', 'total_harga'));
+    }
+
+    public function _construct(){
+        $this -> middleware('admin');
     }
 }

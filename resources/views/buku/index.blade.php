@@ -7,10 +7,12 @@
     @endif
     <div class="container">
         <h1>DATA BUKU</h1>
-        <div class="d-flex flex-row justify-content-between align-items-center">
+        <div class="d-flex flex-row justify-content-end align-items-center">
+            @if (Auth::check() && Auth::user() -> level == 'admin')
             <p><a name="tambah_buku" id="btn_tambah_buku" class="btn btn-primary" 
                 href="{{ route('buku.create') }}" role="button">Tambah Buku</a>
             </p>
+            @endif
             {{-- SEARCH --}}
             <form action="{{ route('buku.search') }}" method="get" class="w-25">
                 @csrf
