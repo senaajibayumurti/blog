@@ -13,9 +13,15 @@
         </div>
     @endif
     <div class="container w-50">
-        <form action="{{route('buku.update',$buku->id)}}" method="POST">
+        <form action="{{route('buku.update',$buku->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="d-flex flex-column justify-content-between">
+                <div class="input-group d-flex flex-row justify-content-between align-content-start mb-2">
+                    <p>Gambar</p>
+                    <div class="custom-file">
+                        <input type="file" name="thumbnail" id="thumbnail">
+                    </div>
+                </div>
                 <div class="d-flex flex-row justify-content-between align-content-start mb-2">
                     <p>Judul</p>
                     <input type="text" name="judul" id="judul" class="form-control w-75"

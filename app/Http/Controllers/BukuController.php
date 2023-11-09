@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Database\Factories\BukuFactory;
 use Illuminate\Http\Request;
 use App\Models\Buku;
+use Intervention\Image\Facades\Image;
 
 class BukuController extends Controller
 {
@@ -52,19 +53,33 @@ class BukuController extends Controller
         $buku = Buku::find($id);
         return view('buku.edit', compact('buku'));
     }
+
+    //Tambahan Thumbnail
     public function update(Request $request, $id){
         $buku = Buku::find($id);
+
         $this -> validate($request, [
             'judul'         => 'required|string',
             'penulis'       => 'required|string|max:30',
             'harga'         => 'required|numeric',
-            'tgl_terbit'    => 'required|date'
+            'tgl_terbit'    => 'required|date',
+            'thumbnail'     => 'image|mimes:jpeg,jpg,png|max:2048'
         ]);
+
+        $filename = time().'_'.$request -> thumbnail -> getClientOriginalName();
+        $filepath = $request -> file('thumbnail') -> storeAs('uploads', $filename, 'public');
+
+        Image::make(storage_path().'/app/public/uploads/'.$filename)
+            -> fit(240,320)
+            -> save();
+
         $buku -> update([
-            'judul' => $request -> judul,
-            'penulis' => $request -> penulis,
-            'harga' => $request -> harga,
-            'tgl_terbit' => $request -> tgl_terbit
+            'judul'         => $request -> judul,
+            'penulis'       => $request -> penulis,
+            'harga'         => $request -> harga,
+            'tgl_terbit'    => $request -> tgl_terbit,
+            'filename'      => $filename,
+            'filepath'      => '/storage/'.$filepath
         ]);
         return redirect('/home') -> with('pesan', 'Data Buku (update) Berhasil di Simpan');
     }

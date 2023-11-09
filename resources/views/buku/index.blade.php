@@ -29,6 +29,7 @@
                 <thead>
                     <tr class="table-primary">
                         <th>id</th>
+                        <th>Thumbnail</th>
                         <th>Judul Buku</th>
                         <th>Penulis</th>
                         <th>Harga</th>
@@ -42,6 +43,16 @@
                     @foreach ($data_buku as $buku)
                         <tr>
                             <td>{{ $buku -> id}}</td>
+                            <th>
+                                @if ($buku -> filepath)
+                                <div class="relative h-10 w-10">
+                                    <img 
+                                    class="h-full w-full rounded-full object-cover object-center"
+                                    src="{{ asset($buku -> filepath) }}"
+                                    alt="">
+                                </div>
+                                @endif
+                            </th>
                             <td>{{ $buku -> judul}}</td>
                             <td>{{ $buku -> penulis}}</td>
                             <td>{{ "Rp ".number_format($buku->harga, 2, ',', '.') }}</td>

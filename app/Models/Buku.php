@@ -10,6 +10,6 @@ class Buku extends Model
     use HasFactory;
     protected $table = 'buku';
     protected $primaryKey = 'id';
-    protected $fillable = ['judul', 'penulis', 'harga','tgl_terbit', 'created_at','updated_at'];
+    protected $fillable = ['judul', 'penulis', 'harga','tgl_terbit', 'created_at','updated_at','filename','filepath'];
     protected $dates = ['tgl_terbit'];
 }
