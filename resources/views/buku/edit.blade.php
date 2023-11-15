@@ -16,11 +16,8 @@
         <form action="{{route('buku.update',$buku->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="d-flex flex-column justify-content-between">
-                <div class="input-group d-flex flex-row justify-content-between align-content-start mb-2">
-                    <p>Gambar</p>
-                    <div class="custom-file">
-                        <input type="file" name="thumbnail" id="thumbnail">
-                    </div>
+                <div class="justify-content-start">
+                    <h5 class="">Data Buku:</h5>
                 </div>
                 <div class="d-flex flex-row justify-content-between align-content-start mb-2">
                     <p>Judul</p>
@@ -41,6 +38,30 @@
                     <p>Tgl. Terbit</p>
                     <input type="date" name="tgl_terbit" id="tgl_terbit" class="date form-control w-75" placeholder="yyyy/mm/dd"
                     value="{{$buku->tgl_terbit}}">    
+                </div>
+                <div class="justify-content-start">
+                    <h5 class="">Thumbnail:</h5>
+                </div>
+                <div class="input-group d-flex flex-row justify-content-between align-content-start mb-2">
+                    <p>Gambar</p>
+                    <div class="custom-file w-75">
+                        <input type="file" name="thumbnail" id="thumbnail">
+                    </div>
+                </div>
+                <div class="justify-content-start">
+                    <h5 class="">Galeri:</h5>
+                </div>
+                <div class="input-group d-flex flex-row justify-content-between align-content-start mb-2">
+                    <p>Gambar</p>
+                    <div class="custom-file w-75">
+                        <input type="file" name="thumbnail" id="thumbnail">
+                    </div>
+                </div>
+                <div class="input-group d-flex flex-row justify-content-between align-content-start mb-2">
+                    <p>Gambar</p>
+                    <div class="custom-file w-75">
+                        <input type="file" name="thumbnail" id="thumbnail">
+                    </div>
                 </div>
                 <div class="d-flex flex-row justify-content-around mt-2 w-25 align-self-end">
                     <button type="submit" class="btn btn-success">Simpan</button>
