@@ -47,20 +47,31 @@
                     <div class="custom-file w-75">
                         <input type="file" name="thumbnail" id="thumbnail">
                     </div>
+                    @if ($buku -> filepath)
+                    <div class="relative h-10 w-10">
+                        <img 
+                        class="h-full w-full rounded-full object-cover object-center"
+                        src="{{ asset($buku -> filepath) }}"
+                        alt="">
+                    </div>
+                    @endif
                 </div>
                 <div class="justify-content-start">
                     <h5 class="">Galeri:</h5>
                 </div>
                 <div class="input-group d-flex flex-row justify-content-between align-content-start mb-2">
-                    <p>Gambar</p>
+                    <p>Gambar buat Galeri</p>
                     <div class="custom-file w-75">
-                        <input type="file" name="thumbnail" id="thumbnail">
+                        <input type="file" name="galeri" id="galeri">
                     </div>
                 </div>
-                <div class="input-group d-flex flex-row justify-content-between align-content-start mb-2">
-                    <p>Gambar</p>
-                    <div class="custom-file w-75">
-                        <input type="file" name="thumbnail" id="thumbnail">
+                <div class="input-group d-flex flex-row justify-content-between align-content-center mb-2">
+                    <div class="gallery_items">
+                        @foreach ($buku -> gallery() -> get() as $gallery)
+                            <div class="gallery_item h-full w-full rounded-full object-cover object-center">
+                                <img src="{{ asset($gallery->path) }}" alt="" width="400"/>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="d-flex flex-row justify-content-around mt-2 w-25 align-self-end">

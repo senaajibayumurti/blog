@@ -11,7 +11,8 @@ class Galeri extends Model
     protected $table = 'galeri';
     protected $fillable = ['id', 'nama_galeri','path','foto','buku_id'];
 
-    public function buku(): BelongsTo{
+    public function buku():BelongsTo
+    {
         return $this->belongsTo(Buku::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Galeri;
 use Database\Factories\BukuFactory;
 use Illuminate\Http\Request;
 use App\Models\Buku;
@@ -58,29 +59,52 @@ class BukuController extends Controller
     public function update(Request $request, $id){
         $buku = Buku::find($id);
 
-        $this -> validate($request, [
-            'judul'         => 'required|string',
-            'penulis'       => 'required|string|max:30',
-            'harga'         => 'required|numeric',
-            'tgl_terbit'    => 'required|date',
-            'thumbnail'     => 'image|mimes:jpeg,jpg,png|max:2048'
-        ]);
+        if ($request->file('thumbnail')) {
+            $request->validate([
+                'thumbnail' => 'image|mimes:jpeg,jpg,png|max:2048'
+            ]);
 
-        $filename = time().'_'.$request -> thumbnail -> getClientOriginalName();
-        $filepath = $request -> file('thumbnail') -> storeAs('uploads', $filename, 'public');
+            $fileName = time().'_'.$request->thumbnail->getClientOriginalName();
+            $filePath = $request->file('thumbnail')->storeAs('uploads', $fileName, 'public');
+            
+            Image::make(storage_path().'/app/public/uploads/'.$fileName)->fit(140,220)->save();
+        }
 
-        Image::make(storage_path().'/app/public/uploads/'.$filename)
-            -> fit(240,320)
-            -> save();
+        if($request -> file('gallery')){
+            foreach($request -> file('gallery') as $key => $file){
+                $filename = time().'_'.$file -> getClientOriginalName();
+                $filepath = $file -> storeAs('uploads', $filename, 'public') ;
 
-        $buku -> update([
-            'judul'         => $request -> judul,
-            'penulis'       => $request -> penulis,
-            'harga'         => $request -> harga,
-            'tgl_terbit'    => $request -> tgl_terbit,
-            'filename'      => $filename,
-            'filepath'      => '/storage/'.$filepath
-        ]);
+                $gallery = Galeri::create([
+                    'nama_galeri'   => $filename,
+                    'path'          => '/storage/'.$filepath,
+                    'foto'          => $filename,
+                    'buku_id'       => $id
+                ]);
+            }
+        }
+
+        if ($request->file('thumbnail')) {
+            $buku->update([
+                'judul' => $request->judul,
+                'penulis' => $request->penulis,
+                'harga' => $request->harga,
+                'tgl_terbit' => $request->tgl_terbit,
+                'filename' => $fileName,
+                'filepath' => '/storage/' . $filePath
+            ]);
+        } else {
+            if ($buku->filepath) {
+                $buku->update([
+                    'judul' => $request->judul,
+                    'penulis' => $request->penulis,
+                    'harga' => $request->harga,
+                    'tgl_terbit' => $request->tgl_terbit,
+                    'filename' => $buku->filename,
+                    'filepath' => $buku->filepath
+                ]);
+            }
+        }
         return redirect('/home') -> with('pesan', 'Data Buku (update) Berhasil di Simpan');
     }
 
