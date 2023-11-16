@@ -74,15 +74,15 @@ class BukuController extends Controller
             foreach($request -> file('gallery') as $key => $file){
                 $filename = time().'_'.$file -> getClientOriginalName();
                 $filepath = $file -> storeAs('uploads', $filename, 'public') ;
-
-                $gallery = Galeri::create([
+        
+                Galeri::create([
                     'nama_galeri'   => $filename,
                     'path'          => '/storage/'.$filepath,
                     'foto'          => $filename,
                     'buku_id'       => $id
                 ]);
             }
-        }
+        }        
 
         if ($request->file('thumbnail')) {
             $buku->update([

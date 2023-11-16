@@ -62,7 +62,7 @@
                 <div class="input-group d-flex flex-row justify-content-between align-content-start mb-2">
                     <p>Gambar buat Galeri</p>
                     <div class="custom-file w-75">
-                        <input type="file" name="galeri" id="galeri">
+                        <input type="file" name="gallery" id="gallery">
                     </div>
                 </div>
                 <div class="input-group d-flex flex-row justify-content-between align-content-center mb-2">
